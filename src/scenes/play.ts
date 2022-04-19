@@ -61,13 +61,13 @@ export class PlayScene extends Phaser.Scene {
         timeline.add({
             targets: this.gameGrid,
             y: 50,
-            duration: 500,
+            duration: 250,
             ease: 'Power1'
         });
         timeline.add({
             targets: this.keyboard,
             y: 100 + this.gameGrid.getBounds().height,
-            duration: 500,
+            duration: 250,
             ease: 'Power1'
         });
 
