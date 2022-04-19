@@ -6,12 +6,14 @@ export default class Button extends Phaser.GameObjects.Container {
     textOriginalY: number;
     frameOriginal: number;
 
+    isPressed: boolean;
     callback: Function;
 
     constructor(scene: Phaser.Scene, text: string = '', callback: Function, frame: number = 0) {
         super(scene, 0, 0);
         this.callback = callback;
         this.frameOriginal = frame;
+        this.isPressed = false;
 
         this.background = scene.add.sprite(0, 0, "buttons", frame);
         this.background.setOrigin(0);
@@ -19,9 +21,8 @@ export default class Button extends Phaser.GameObjects.Container {
         
         this.background.setInteractive();
         this.background.on('pointerdown', this.onPointerDown, this);
-        this.background.on('pointerout', this.onPointerUp, this);
-        
-        scene.input.on('pointeroutoutside', this.onPointerUp, this);
+        this.background.on('pointerout', this.onPointerOut, this);
+        this.background.on('pointerup', this.onPointerUp, this);
 
         this.add(this.background);
 
@@ -35,14 +36,25 @@ export default class Button extends Phaser.GameObjects.Container {
         scene.add.existing(this);
     }
 
-    onPointerUp(ev: PointerEvent): void {
+    onPointerUp(): void {
+        if (this.isPressed) {     
+            this.onPointerOut();   
+            this.callback();
+        }
+    }
+
+    onPointerOut(): void {
+        this.isPressed = false;
         this.background.setFrame(this.frameOriginal);
         this.text.y = this.textOriginalY;
-        
-        this.callback();
     }
 
     onPointerDown(): void {
+        if (this.isPressed) {
+            return;
+        }
+
+        this.isPressed = true;
         this.background.setFrame(this.frameOriginal + 1);
         this.text.y = this.textOriginalY + 8;
     }
