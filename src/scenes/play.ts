@@ -5,9 +5,9 @@ import { GameOptions } from "../gameOptions";
 import { Keyboard } from "../keyboard";
 
 export enum letterState {
-    WRONG = 1,  
-    CORRECT = 2,
-    PERFECT = 4,
+    WRONG = 2,  
+    CORRECT = 4,
+    PERFECT = 8,
 }
  
 export class PlayScene extends Phaser.Scene {

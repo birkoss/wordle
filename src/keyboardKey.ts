@@ -9,8 +9,14 @@ export default class KeyboardKey extends Phaser.GameObjects.Container {
     tile: Tile;
     keyboardLetter: GuiText;
 
+    isPressed: boolean;
+    currentFrame: number;
+    textOriginalY: number;
+
     constructor(scene: PlayScene, x: number, y: number, letter: string) {
         super(scene, x, y);
+        this.isPressed = false;
+        this.currentFrame = 0;
 
         scene.add.existing(this);
 
@@ -26,29 +32,47 @@ export default class KeyboardKey extends Phaser.GameObjects.Container {
 
         this.tile.setInteractive();
 
-        this.tile.on('pointerdown', this.handlePointer, this);
+        this.tile.on('pointerdown', this.onPointerDown, this);
+        this.tile.on('pointerup', this.onPointerUp, this);
+        this.tile.on('pointerout', this.onPointerOut, this);
 
-        switch(letter) {
-            case '<':
-                this.tile.setFrame(0);
-                break;
-            case '>':
-                this.tile.setFrame(1);
-                break;
-            default:
-                this.keyboardLetter = new GuiText(
-                    scene,
-                    this.tile.getBounds().width / 2 - 3,
-                    this.tile.getBounds().height / 2 - 4,
-                    letter
-                );
-                this.keyboardLetter.setScale(4);
-                this.keyboardLetter.setTint(0x000000);
-                this.add(this.keyboardLetter);
-        }
+        this.keyboardLetter = new GuiText(
+            scene,
+            this.tile.getBounds().width / 2 - 3,
+            this.tile.getBounds().height / 2 - 4,
+            letter
+        );
+        this.keyboardLetter.setScale(4);
+        this.keyboardLetter.setTint(0x000000);
+        this.textOriginalY = this.keyboardLetter.y;
+        this.add(this.keyboardLetter);
+        
     }
 
-    handlePointer(): void {
-        this.parentScene.updateWord(this.boundLetter);
+    changeFrame(newFrame: number): void {
+        this.currentFrame = newFrame;
+        this.tile.setFrame(this.currentFrame);
+    }
+
+    onPointerUp(): void {
+        if (this.isPressed) {
+            this.onPointerOut();
+            this.parentScene.updateWord(this.boundLetter);
+        }
+    }
+    onPointerOut(): void {
+        this.isPressed = false;
+        this.tile.setFrame(this.currentFrame);
+        this.keyboardLetter.y = this.textOriginalY;
+    }
+
+    onPointerDown(): void {
+        if (this.isPressed) {
+            return;
+        }
+
+        this.isPressed = true;
+        this.tile.setFrame(this.currentFrame + 1);
+        this.keyboardLetter.y = this.textOriginalY + 8;
     }
 }

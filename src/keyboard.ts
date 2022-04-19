@@ -80,8 +80,10 @@ export class Keyboard extends Phaser.GameObjects.Container {
         result.forEach((element: number, index: number) => {
             let position: Phaser.Math.Vector2 = this.getLetterPosition(currentWord.charAt(index));
 
+            // Only change colors if it's smaller than the current result
+            // - Order: Normal, Wrong, Correct, Perfect
             if (parseInt(this.virtualKeyboard[position.x][position.y].tile.frame.name) < element) {
-                this.virtualKeyboard[position.x][position.y].tile.setFrame(element);
+                this.virtualKeyboard[position.x][position.y].changeFrame(element);
             }
         });
     }
