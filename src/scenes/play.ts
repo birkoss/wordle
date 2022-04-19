@@ -151,7 +151,7 @@ export class PlayScene extends Phaser.Scene {
 
                         if (!win) {
                             if (this.gameGrid.currentRow >= 6) {
-                                this.showMessage("Échec!", "Le mot était:\n" + this.currentWord + "!", true);
+                                this.showMessage("Échec!", "Le mot était:\n" + this.wordToGuess + "!", true);
                             }
                         } else {
                             this.showMessage("Victoire!", "Vous avez gagné en\n" + this.gameGrid.currentRow + " essai(s)!");
