@@ -169,6 +169,17 @@ export class PlayScene extends Phaser.Scene {
                 }
 
         }
+
+        if (this.currentWord.length <= 0) {
+            this.keyboard.btnBackspace.disable();
+        } else {
+            this.keyboard.btnBackspace.enable();
+        }
+        if (this.currentWord.length == this.wordToGuess.length) {
+            this.keyboard.btnEnter.enable();
+        } else {
+            this.keyboard.btnEnter.disable();
+        }
     }
 
     removeChar(initialString: string, index: number): string {

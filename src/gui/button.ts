@@ -36,6 +36,16 @@ export default class Button extends Phaser.GameObjects.Container {
         scene.add.existing(this);
     }
 
+    disable(): void {
+        this.background.disableInteractive();
+        this.setAlpha(0.6);
+    }
+
+    enable(): void {
+        this.background.setInteractive();
+        this.setAlpha(1);
+    }
+
     onPointerUp(): void {
         if (this.isPressed) {     
             this.onPointerOut();   

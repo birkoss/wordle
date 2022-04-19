@@ -7,6 +7,9 @@ const keyboardLayout: string[] = ['QWERTYUIOP','ASDFGHJKL','ZXCVBNM'];
 
 export class Keyboard extends Phaser.GameObjects.Container {
     virtualKeyboard: KeyboardKey[][];
+
+    btnBackspace: Button;
+    btnEnter: Button;
     
     callbackBackspace: Function;
     callbackEnter: Function;
@@ -45,7 +48,7 @@ export class Keyboard extends Phaser.GameObjects.Container {
             }
         });
 
-        let enter = new Button(
+        this.btnEnter = new Button(
             scene,
             "Valider",
             function() {
@@ -53,12 +56,13 @@ export class Keyboard extends Phaser.GameObjects.Container {
             }.bind(this),
             2
         );
-        enter.x = this.getBounds().width - enter.getBounds().width - 50;
+        this.btnEnter.x = this.getBounds().width - this.btnEnter.getBounds().width - 50;
         
-        enter.y = this.getBounds().height + 50;
-        this.add(enter);
+        this.btnEnter.y = this.getBounds().height + 50;
+        this.btnEnter.disable();
+        this.add(this.btnEnter);
 
-        let backspace = new Button(
+        this.btnBackspace = new Button(
             scene,
             "Effacer",
             function() {
@@ -66,9 +70,10 @@ export class Keyboard extends Phaser.GameObjects.Container {
             }.bind(this),
             4
         );
-        backspace.x = 50;
-        backspace.y = enter.y;
-        this.add(backspace);
+        this.btnBackspace.x = 50;
+        this.btnBackspace.y = this.btnEnter.y;
+        this.btnBackspace.disable();
+        this.add(this.btnBackspace);
     }
 
     showResult(currentWord: string, result: number[]): void {
