@@ -9,7 +9,10 @@ export class PreloadScene extends Phaser.Scene {
         this.load.json('words', 'assets/words.json');
 
         this.load.image('background', 'assets/background.png');
-        this.load.image('message', 'assets/message.png');
+        this.load.spritesheet('message', 'assets/message.png', {
+            frameWidth: 91,
+            frameHeight: 60,
+        });
 
         this.load.spritesheet('menuButtons', 'assets/menuButtons.png', {
             frameWidth: 100,

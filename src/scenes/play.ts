@@ -76,6 +76,7 @@ export class PlayScene extends Phaser.Scene {
         this.message = new Message(this, "Partie terminée", "Vous y étiez presque!\nEssayer encore!", function() {
             this.scene.start('PlayScene');
         }.bind(this));
+        this.message.x = (this.gameWidth - this.message.getBounds().width) / 2;
         this.message.y = this.game.config.height as number;
     }
 
@@ -150,7 +151,7 @@ export class PlayScene extends Phaser.Scene {
 
                         if (!win) {
                             if (this.gameGrid.currentRow >= 6) {
-                                this.showMessage("Échec!", "Le mot était:\n" + this.currentWord + "!");
+                                this.showMessage("Échec!", "Le mot était:\n" + this.currentWord + "!", true);
                             }
                         } else {
                             this.showMessage("Victoire!", "Vous avez gagné en\n" + this.gameGrid.currentRow + " essai(s)!");
@@ -186,8 +187,9 @@ export class PlayScene extends Phaser.Scene {
         return initialString.substring(0, index) + '_' + initialString.substring(index + 1);
     }
 
-    showMessage(title: string, description: string) {
+    showMessage(title: string, description: string, isError: boolean = false) {
         this.message.textTitle.setText(title);
+        this.message.changeBackground(isError ? 1 : 0);
         this.message.textDescription.setText(description);
 
         let timeline = this.tweens.createTimeline();
@@ -201,7 +203,7 @@ export class PlayScene extends Phaser.Scene {
        
         timeline.add({
             targets: this.message,
-            y: this.game.config.height as number - this.message.getBounds().height - 20,
+            y: this.gameGrid.y + this.gameGrid.getBounds().height + 50,
             duration: 250,
             ease: 'Power1'
         });
