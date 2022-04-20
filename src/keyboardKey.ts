@@ -38,7 +38,7 @@ export default class KeyboardKey extends Phaser.GameObjects.Container {
 
         this.keyboardLetter = new GuiText(
             scene,
-            this.tile.getBounds().width / 2 - GameOptions.keyboardLetterScale + 2,
+            this.tile.getBounds().width / 2 - GameOptions.keyboardLetterScale + 1,
             this.tile.getBounds().height / 2 - GameOptions.keyboardLetterScale - 1,
             letter
         );
@@ -73,6 +73,6 @@ export default class KeyboardKey extends Phaser.GameObjects.Container {
 
         this.isPressed = true;
         this.tile.setFrame(this.currentFrame + 1);
-        this.keyboardLetter.y = this.textOriginalY + 8;
+        this.keyboardLetter.y = this.textOriginalY + GameOptions.keyboardTextDownMovement;
     }
 }
