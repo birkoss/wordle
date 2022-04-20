@@ -1,8 +1,8 @@
-import KeyboardKey from "../keyboardKey";
 import { GameGrid } from "../gameGrid";
 import { Message } from "../gui/message";
 import { GameOptions } from "../gameOptions";
 import { Keyboard } from "../keyboard";
+import { Panel } from "../gui/panel";
 
 export enum letterState {
     WRONG = 2,  
@@ -23,6 +23,8 @@ export class PlayScene extends Phaser.Scene {
     keyboard: Keyboard;
 
     message: Message;
+
+    panel: Panel;
  
     constructor() {
         super({
@@ -40,6 +42,10 @@ export class PlayScene extends Phaser.Scene {
         this.wordToGuess = this.words[Phaser.Math.Between(0, this.words.length - 1)].toUpperCase();
 
         console.log(this.wordToGuess);
+
+        this.panel = new Panel(this);
+        this.panel.x = this.gameWidth / 2;
+        //this.panel.y = this.panel.getBounds().height / 2;
 
         this.gameGrid = new GameGrid(this, GameOptions.rows);
 
@@ -60,13 +66,13 @@ export class PlayScene extends Phaser.Scene {
 
         timeline.add({
             targets: this.gameGrid,
-            y: 50,
+            y: (this.panel.getBounds().height / 2) + GameOptions.playScenePadding,
             duration: 250,
             ease: 'Power1'
         });
         timeline.add({
             targets: this.keyboard,
-            y: 100 + this.gameGrid.getBounds().height,
+            y: (this.panel.getBounds().height / 2) + (GameOptions.playScenePadding * 2) + this.gameGrid.getBounds().height,
             duration: 250,
             ease: 'Power1'
         });

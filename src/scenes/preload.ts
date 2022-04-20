@@ -8,6 +8,8 @@ export class PreloadScene extends Phaser.Scene {
     preload(): void {
         this.load.json('words', 'assets/words.json');
 
+        this.load.image('panel', 'assets/panel.png');
+
         this.load.image('background', 'assets/background.png');
         this.load.spritesheet('message', 'assets/message.png', {
             frameWidth: 91,

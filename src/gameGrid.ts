@@ -28,8 +28,8 @@ export class GameGrid extends Phaser.GameObjects.Container {
             for (let j: number = 0; j < rows; j++) {
                 this.letterBox[i][j] = new BigLetterBox(
                     scene,
-                    GameOptions.tileStartAt + i * ((GameOptions.tileScale * GameOptions.tileWidth) + GameOptions.tileSpacing),
-                    GameOptions.tileStartAt + j * ((GameOptions.tileScale * GameOptions.tileWidth) + GameOptions.tileSpacing)
+                    GameOptions.tileStartAt + i * ((GameOptions.tileScale * GameOptions.tileSize) + GameOptions.tileSpacing),
+                    GameOptions.tileStartAt + j * ((GameOptions.tileScale * GameOptions.tileSize) + GameOptions.tileSpacing)
                 );
 
                 this.add(this.letterBox[i][j]);

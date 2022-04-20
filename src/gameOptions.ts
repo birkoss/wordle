@@ -1,54 +1,74 @@
+console.log(window.devicePixelRatio);
+//window.devicePixelRatio = 1;
+
+console.log(screen.orientation);
+
+let gameDevicePixelRatio: number = window.devicePixelRatio;
+
+console.log(window.devicePixelRatio, gameDevicePixelRatio);
+
 export const GameOptions = {
+    gameDevicePixelRatio: gameDevicePixelRatio,
+    tileSize: 11,
+
     // CustomButton()
-    customButtonBackgroundScale: 10 / window.devicePixelRatio,
-    customButtonTextScale: 5 / window.devicePixelRatio,
-    customButtonTextX: 290 / window.devicePixelRatio,
-    customButtonTextDownMovement: 8 / window.devicePixelRatio,
+    customButtonBackgroundScale: 3 * gameDevicePixelRatio,
+    customButtonTextScale: 1 * gameDevicePixelRatio,
+    customButtonTextX: 290 / gameDevicePixelRatio,
+    customButtonTextDownMovement: 2 * gameDevicePixelRatio,
 
     // Button()
-    buttonTextY: -6 / window.devicePixelRatio,
-    buttonTextScale: 4 / window.devicePixelRatio,
+    buttonTextY: -6 / gameDevicePixelRatio,
+    buttonTextScale: 1 * gameDevicePixelRatio,
 
     // MenuButton()
-    menuButtonTextX: 16 / window.devicePixelRatio,
-    menuButtonTextY: -6 / window.devicePixelRatio,
-    
-    // MenuScene()
-    menuSceneBackgroundScale: 10 / window.devicePixelRatio,
-    menuSceneTitleScale: 6 / window.devicePixelRatio,
-    menuSceneTitleY: -196 / window.devicePixelRatio,
-    menuSceneButtonHelpY: 180 / window.devicePixelRatio,
+    menuButtonBackgroundScale: 2.5 * gameDevicePixelRatio,
+    menuButtonTextX: 2 * gameDevicePixelRatio,
+    menuButtonTextY: -1 * gameDevicePixelRatio,
 
     // Keyboard()
-    keyboardMainButtonY: 400 / window.devicePixelRatio,
+    keyboardMainButtonY: 100 * gameDevicePixelRatio,
+    
+    // TinyButton
+    tinyButtonBackgroundScale: 2 * gameDevicePixelRatio,
+
+    // Panel()
+    panelBackgroundScale: 3 * gameDevicePixelRatio,
+    panelButtonX: 10 * gameDevicePixelRatio,
+    panelButtonY: 16 * gameDevicePixelRatio,
+
+    // MenuScene()
+    menuSceneBackgroundScale: 2.5 * gameDevicePixelRatio,
+    menuSceneTitleScale: 2 * gameDevicePixelRatio,
+    menuSceneTitleY: -48 * gameDevicePixelRatio,
+    menuSceneButtonHelpY: 45 * gameDevicePixelRatio,
+
+    // PlayScene()
+    playScenePadding: 10 * gameDevicePixelRatio,
+
+
+    // @TODO: Clean
     
 
+    tileStartAt: 18 * gameDevicePixelRatio,
+    tileScale: 3 * gameDevicePixelRatio,
+    tileSpacing: 10 * gameDevicePixelRatio,
+    tileLetterScale: 2 * gameDevicePixelRatio,
 
+    keyboardScale: 2 * gameDevicePixelRatio,
+    keyboardLetterScale: 1 * gameDevicePixelRatio,
+    keyboardTextDownMovement: 2 * gameDevicePixelRatio,
+    keyboardButtonSpacing: 25 * gameDevicePixelRatio,
 
+    messageBackgroundScale: 10 / gameDevicePixelRatio,
+    messageTitleScale: 5 / gameDevicePixelRatio,
+    messageTitleY: 104 / gameDevicePixelRatio,
+    messageTitleX: 5 / gameDevicePixelRatio,
+    messageDescriptionScale: 4 / gameDevicePixelRatio,
+    messageDescriptionY: 310 / gameDevicePixelRatio,
+    messageButtonY: 420 / gameDevicePixelRatio,
 
-
-    tileWidth: 11,
-
-    tileStartAt: 62 / window.devicePixelRatio,
-    tileScale: 10 / window.devicePixelRatio,
-    tileSpacing: 32 / window.devicePixelRatio,
-    tileLetterScale: 6 / window.devicePixelRatio,
-
-    keyboardScale: 8 / window.devicePixelRatio,
-    keyboardLetterScale: 4 / window.devicePixelRatio,
-    keyboardTextDownMovement: 8 / window.devicePixelRatio,
-
-    keyboardButtonSpacing: 50 / window.devicePixelRatio,
-
-    messageBackgroundScale: 10 / window.devicePixelRatio,
-    messageTitleScale: 5 / window.devicePixelRatio,
-    messageTitleY: 104 / window.devicePixelRatio,
-    messageTitleX: 5 / window.devicePixelRatio,
-    messageDescriptionScale: 4 / window.devicePixelRatio,
-    messageDescriptionY: 310 / window.devicePixelRatio,
-    messageButtonY: 420 / window.devicePixelRatio,
-
-    gameGridScale: 10 / window.devicePixelRatio,
+    gameGridScale: 3 * gameDevicePixelRatio,
  
     rows : 6,
 }
