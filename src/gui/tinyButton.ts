@@ -18,8 +18,6 @@ export default class TinyButton extends CustomButton {
         this.text.setTint(0xfa3c52);
         this.text.setScale(GameOptions.buttonTextScale);
 
-        console.log(text);
-
         this.init();
     }
 }

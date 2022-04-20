@@ -32,6 +32,6 @@ export class PreloadScene extends Phaser.Scene {
     }
  
     create(): void {
-        this.scene.start('MenuScene');
+        this.scene.start('PlayScene');
     }
 }
