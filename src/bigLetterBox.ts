@@ -16,8 +16,12 @@ export default class BigLetterBox extends Phaser.GameObjects.Container {
 
         let bounds: Phaser.Geom.Rectangle = this.tile.getBounds();
 
-        this.letterToShow = new GuiText(scene, bounds.width / 2 - 6, bounds.height / 2 - 6);
-        this.letterToShow.setScale(5);
+        this.letterToShow = new GuiText(
+            scene,
+            bounds.width / 2 - GameOptions.tileLetterScale - 1,
+            bounds.height / 2 - GameOptions.tileLetterScale - 1
+        );
+        this.letterToShow.setScale(GameOptions.tileLetterScale);
         this.add(this.letterToShow);
     }
 

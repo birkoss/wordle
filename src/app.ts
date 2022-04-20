@@ -30,3 +30,5 @@ const configObject: Phaser.Types.Core.GameConfig = {
 }
  
 new Phaser.Game(configObject);
+
+// alert(window.devicePixelRatio);

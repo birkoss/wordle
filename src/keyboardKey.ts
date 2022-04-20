@@ -38,11 +38,11 @@ export default class KeyboardKey extends Phaser.GameObjects.Container {
 
         this.keyboardLetter = new GuiText(
             scene,
-            this.tile.getBounds().width / 2 - 3,
-            this.tile.getBounds().height / 2 - 4,
+            this.tile.getBounds().width / 2 - GameOptions.keyboardLetterScale + 2,
+            this.tile.getBounds().height / 2 - GameOptions.keyboardLetterScale - 1,
             letter
         );
-        this.keyboardLetter.setScale(4);
+        this.keyboardLetter.setScale(GameOptions.keyboardLetterScale);
         this.keyboardLetter.setTint(0x000000);
         this.textOriginalY = this.keyboardLetter.y;
         this.add(this.keyboardLetter);
