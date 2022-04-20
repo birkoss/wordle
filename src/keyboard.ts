@@ -39,8 +39,8 @@ export class Keyboard extends Phaser.GameObjects.Container {
             for (let i: number = 0; i < row.length; i++) {
                 this.virtualKeyboard[index][i] = new KeyboardKey(
                     scene,
-                    leftPadding + i * ((GameOptions.keyboardScale * GameOptions.tileWidth) + GameOptions.keyboardScale * 2),
-                    index * ((GameOptions.keyboardScale * GameOptions.tileWidth) + GameOptions.keyboardScale * 2),
+                    leftPadding + i * ((GameOptions.keyboardScale * GameOptions.tileWidth) + GameOptions.keyboardScale),
+                    index * ((GameOptions.keyboardScale * GameOptions.tileWidth) + GameOptions.keyboardScale),
                     row.charAt(i)
                 );
 

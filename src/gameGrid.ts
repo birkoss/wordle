@@ -14,7 +14,7 @@ export class GameGrid extends Phaser.GameObjects.Container {
 
         let background = scene.add.image(0, 0, "background");
         background.setOrigin(0);
-        background.setScale(11);
+        background.setScale(GameOptions.gameGridScale);
         this.add(background);
 
         this.currentRow = 0;
@@ -28,8 +28,8 @@ export class GameGrid extends Phaser.GameObjects.Container {
             for (let j: number = 0; j < rows; j++) {
                 this.letterBox[i][j] = new BigLetterBox(
                     scene,
-                    190 + i * ((GameOptions.tileScale * 22) + 15),
-                    70 + j * ((GameOptions.tileScale * 22) + 15)
+                    190 + i * ((GameOptions.tileScale * GameOptions.tileWidth) + 15),
+                    70 + j * ((GameOptions.tileScale * GameOptions.tileWidth) + 15)
                 );
 
                 this.add(this.letterBox[i][j]);

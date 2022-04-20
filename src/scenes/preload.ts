@@ -19,12 +19,12 @@ export class PreloadScene extends Phaser.Scene {
             frameHeight: 30,
         });
         this.load.spritesheet('buttons', 'assets/buttons.png', {
-            frameWidth: 70,
-            frameHeight: 24,
+            frameWidth: 35,
+            frameHeight: 12,
         });
         this.load.spritesheet('tile', 'assets/tiles.png', {
-            frameWidth: 22,
-            frameHeight: 22,
+            frameWidth: 11,
+            frameHeight: 11,
         });
         this.load.bitmapFont('font:gui', 'assets/fonts/gui.png', 'assets/fonts/gui.xml');
     }

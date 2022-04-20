@@ -17,7 +17,7 @@ export default class Button extends Phaser.GameObjects.Container {
 
         this.background = scene.add.sprite(0, 0, "buttons", frame);
         this.background.setOrigin(0);
-        this.background.setScale(5);
+        this.background.setScale(10);
         
         this.background.setInteractive();
         this.background.on('pointerdown', this.onPointerDown, this);
