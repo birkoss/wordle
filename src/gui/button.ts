@@ -3,10 +3,10 @@ import GuiText from "../guiText";
 import CustomButton from "./customButton";
 
 export default class Button extends CustomButton {
-    constructor(scene: Phaser.Scene, text: string = '', callback: Function, frame: number = 0) {
+    constructor(scene: Phaser.Scene, text: string = '', callback: Function, frame: number = 0, sprite: string = "buttons") {
         super(scene, text, callback, frame);
 
-        this.background = scene.add.sprite(0, 0, "buttons", frame);
+        this.background = scene.add.sprite(0, 0, sprite, frame);
         this.background.setScale(GameOptions.customButtonBackgroundScale);
         
         this.text = new GuiText(

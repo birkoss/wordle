@@ -53,6 +53,11 @@ export const GameOptions = {
     messageDescriptionY: -14 * gameDevicePixelRatio,
     messageButtonY: 40 * gameDevicePixelRatio,
 
+    // Popup()
+    popupButtonY: 44 * gameDevicePixelRatio,
+    popupButtonX: 40 * gameDevicePixelRatio,
+    popupDescriptionY: -4 * gameDevicePixelRatio,
+
     // BigLetterBox
     tileStartAt: 18 * gameDevicePixelRatio,
     tileScale: 3 * gameDevicePixelRatio,

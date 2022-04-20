@@ -3,6 +3,7 @@ import { Message } from "../gui/message";
 import { GameOptions } from "../gameOptions";
 import { Keyboard } from "../keyboard";
 import { Panel } from "../gui/panel";
+import { Popup } from "../gui/popup";
 
 export enum letterState {
     WRONG = 2,  
@@ -23,6 +24,7 @@ export class PlayScene extends Phaser.Scene {
     keyboard: Keyboard;
 
     message: Message;
+    popup: Popup;
 
     panel: Panel;
  
@@ -42,9 +44,13 @@ export class PlayScene extends Phaser.Scene {
 
         this.panel = new Panel(
             this,
+            () => this.popup.animateIn()
+            /*
+
             () => this.animateOut(
                 () => this.scene.start('MenuScene')
             )
+            */
         );
         this.panel.x = this.gameWidth / 2;
         this.panel.y = this.panel.getBounds().height / 2;
@@ -73,6 +79,16 @@ export class PlayScene extends Phaser.Scene {
         this.message.x = this.message.getBounds().width / 2;
         this.message.y = this.message.getBounds().height / 2;
         this.message.setAlpha(0);
+
+        this.popup = new Popup(
+            this,
+            "Quitter?",
+            "Voulez-vous vraiment\nretourner au menu?",
+            () => this.animateOut(() => this.scene.start('MenuScene'))
+        );
+        this.popup.x = this.popup.getBounds().width / 2;
+        this.popup.y = this.popup.getBounds().height / 2;
+        this.popup.setAlpha(0);
 
         this.animateIn();
     }

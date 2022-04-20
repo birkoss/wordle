@@ -25,6 +25,10 @@ export class PreloadScene extends Phaser.Scene {
             frameWidth: 35,
             frameHeight: 12,
         });
+        this.load.spritesheet('smallButtons', 'assets/smallButtons.png', {
+            frameWidth: 22,
+            frameHeight: 12,
+        });
         this.load.spritesheet('tile', 'assets/tiles.png', {
             frameWidth: 11,
             frameHeight: 11,
