@@ -72,9 +72,8 @@ export class PlayScene extends Phaser.Scene {
                 this.scene.start('PlayScene');
             }.bind(this)
         );
-        this.message.x = (this.gameWidth - this.message.getBounds().width) / 2;
-        this.message.y = this.keyboard.y;
-        this.message.setAlpha(0);
+        this.message.x = this.message.getBounds().width / 2;
+        this.message.y = this.message.getBounds().height / 2;
 
         this.animateIn(null);
     }

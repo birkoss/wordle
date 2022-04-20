@@ -47,11 +47,11 @@ export const GameOptions = {
     // Message()
     messageBackgroundScale: 2.5 * gameDevicePixelRatio,
     messageTitleScale: 1.5 * gameDevicePixelRatio,
-    messageTitleY: 26 * gameDevicePixelRatio,
+    messageTitleY: -49 * gameDevicePixelRatio,
     messageTitleX: 2 * gameDevicePixelRatio,
     messageDescriptionScale: 1 * gameDevicePixelRatio,
-    messageDescriptionY: 66 * gameDevicePixelRatio,
-    messageButtonY: 110 * gameDevicePixelRatio,
+    messageDescriptionY: -14 * gameDevicePixelRatio,
+    messageButtonY: 40 * gameDevicePixelRatio,
 
     // BigLetterBox
     tileStartAt: 18 * gameDevicePixelRatio,
