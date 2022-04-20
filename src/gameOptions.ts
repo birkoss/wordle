@@ -46,6 +46,14 @@ export const GameOptions = {
     // PlayScene()
     playScenePadding: 10 * gameDevicePixelRatio,
 
+    // Message()
+    messageBackgroundScale: 2.5 * gameDevicePixelRatio,
+    messageTitleScale: 1.5 * gameDevicePixelRatio,
+    messageTitleY: 26 * gameDevicePixelRatio,
+    messageTitleX: 2 * gameDevicePixelRatio,
+    messageDescriptionScale: 1 * gameDevicePixelRatio,
+    messageDescriptionY: 66 * gameDevicePixelRatio,
+    messageButtonY: 110 * gameDevicePixelRatio,
 
     // @TODO: Clean
     
@@ -60,13 +68,9 @@ export const GameOptions = {
     keyboardTextDownMovement: 2 * gameDevicePixelRatio,
     keyboardButtonSpacing: 25 * gameDevicePixelRatio,
 
-    messageBackgroundScale: 10 / gameDevicePixelRatio,
-    messageTitleScale: 5 / gameDevicePixelRatio,
-    messageTitleY: 104 / gameDevicePixelRatio,
-    messageTitleX: 5 / gameDevicePixelRatio,
-    messageDescriptionScale: 4 / gameDevicePixelRatio,
-    messageDescriptionY: 310 / gameDevicePixelRatio,
-    messageButtonY: 420 / gameDevicePixelRatio,
+    
+
+
 
     gameGridScale: 3 * gameDevicePixelRatio,
  

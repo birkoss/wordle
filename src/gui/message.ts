@@ -45,7 +45,7 @@ export class Message extends Phaser.GameObjects.Container {
         let button = new Button(scene, "Rejouer", function() {
             this.callback();
         }.bind(this));
-        button.x = (this.background.getBounds().width - button.getBounds().width) / 2;
+        button.x = this.background.getBounds().width / 2;
         button.y = GameOptions.messageButtonY;
         this.add(button);
     }
