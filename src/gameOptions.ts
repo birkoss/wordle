@@ -1,4 +1,12 @@
 export const GameOptions = {
+    menuBackgroundScale: 10 / window.devicePixelRatio,
+    menuTitleScale: 6 / window.devicePixelRatio,
+    menuButtonTextDownMovement: 8 / window.devicePixelRatio,
+
+    menuButtonBackgroundScale: 10 / window.devicePixelRatio,
+    menuButtonTextScale: 5 / window.devicePixelRatio,
+    menuButtonTextX: 290 / window.devicePixelRatio,
+
     tileWidth: 11,
 
     tileStartAt: 62 / window.devicePixelRatio,

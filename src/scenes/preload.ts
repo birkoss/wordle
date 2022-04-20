@@ -15,8 +15,8 @@ export class PreloadScene extends Phaser.Scene {
         });
 
         this.load.spritesheet('menuButtons', 'assets/menuButtons.png', {
-            frameWidth: 100,
-            frameHeight: 30,
+            frameWidth: 50,
+            frameHeight: 15,
         });
         this.load.spritesheet('buttons', 'assets/buttons.png', {
             frameWidth: 35,
@@ -30,6 +30,6 @@ export class PreloadScene extends Phaser.Scene {
     }
  
     create(): void {
-        this.scene.start('PlayScene');
+        this.scene.start('MenuScene');
     }
 }
