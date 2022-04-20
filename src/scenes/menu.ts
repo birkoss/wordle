@@ -29,9 +29,9 @@ export class MenuScene extends Phaser.Scene {
         title.setScale(GameOptions.menuSceneTitleScale);
         this.container.add(title);
 
-        let buttonPlay = new MenuButton(this, "Jouer", function() {
-            this.scene.start('PlayScene');
-        }.bind(this));
+        let buttonPlay = new MenuButton(this, "Jouer", () =>
+            this.animateOut(() => this.scene.start('PlayScene'))
+        );
         this.container.add(buttonPlay);
 
         let buttonHelp = new MenuButton(
@@ -44,5 +44,36 @@ export class MenuScene extends Phaser.Scene {
         );
         buttonHelp.y = GameOptions.menuSceneButtonHelpY;
         this.container.add(buttonHelp);
+
+        this.animateIn();
+    }
+
+    animateIn(): void {
+        let timeline = this.tweens.createTimeline();
+
+        this.container.y = -this.container.getBounds().height;
+        timeline.add({
+            targets: this.container,
+            y: this.game.config.height as number / 2,
+            duration: 250,
+            ease: 'Power1'
+        });
+
+        timeline.play();
+    }
+
+    animateOut(callback: Function): void {
+        let timeline = this.tweens.createTimeline();
+
+        timeline.add({
+            targets: this.container,
+            y: -this.container.getBounds().height,
+            duration: 250,
+            ease: 'Power1'
+        });
+
+        timeline.setCallback("onComplete", () => callback());
+
+        timeline.play();
     }
 }
