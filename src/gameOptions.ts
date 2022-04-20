@@ -1,11 +1,4 @@
-console.log(window.devicePixelRatio);
-//window.devicePixelRatio = 1;
-
-console.log(screen.orientation);
-
 let gameDevicePixelRatio: number = window.devicePixelRatio;
-
-console.log(window.devicePixelRatio, gameDevicePixelRatio);
 
 export const GameOptions = {
     gameDevicePixelRatio: gameDevicePixelRatio,
