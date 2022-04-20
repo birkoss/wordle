@@ -165,9 +165,13 @@ export class PlayScene extends Phaser.Scene {
                         if (!win) {
                             if (this.gameGrid.currentRow >= 6) {
                                 this.showMessage("Échec!", "Le mot était:\n" + this.wordToGuess + "!", true);
+
+                                this.sendRequest(0, "fr", this.wordToGuess, this.gameGrid.currentRow);
                             }
                         } else {
                             this.showMessage("Victoire!", "Vous avez gagné en\n" + this.gameGrid.currentRow + " essai(s)!");
+
+                            this.sendRequest(1, "fr", this.wordToGuess, this.gameGrid.currentRow);
                         }
 
                         this.currentWord = '';
@@ -206,6 +210,19 @@ export class PlayScene extends Phaser.Scene {
         this.message.textDescription.setText(description);
 
         this.message.animateIn();
+    }
+
+    sendRequest(success: number, lang: string, word: string, tries: number): void {
+        var xhr = new XMLHttpRequest();
+        var params = 'success=' + success + '&lang=' + lang + '&word=' + word + '&tries=' + tries;
+        xhr.open('POST', 'https://birkoss.com/wordle/api.php', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+            if(xhr.status == 200) {
+                //alert(this.responseText);
+            }
+        }
+        xhr.send(params);
     }
 
     animateIn(): void {
