@@ -10,6 +10,7 @@ console.log(window.devicePixelRatio, gameDevicePixelRatio);
 export const GameOptions = {
     gameDevicePixelRatio: gameDevicePixelRatio,
     tileSize: 11,
+    rows : 6,
 
     // CustomButton()
     customButtonBackgroundScale: 3 * gameDevicePixelRatio,
@@ -28,6 +29,10 @@ export const GameOptions = {
 
     // Keyboard()
     keyboardMainButtonY: 100 * gameDevicePixelRatio,
+    keyboardScale: 2 * gameDevicePixelRatio,
+    keyboardLetterScale: 1 * gameDevicePixelRatio,
+    keyboardTextDownMovement: 2 * gameDevicePixelRatio,
+    keyboardButtonSpacing: 25 * gameDevicePixelRatio,
     
     // TinyButton
     tinyButtonBackgroundScale: 2 * gameDevicePixelRatio,
@@ -55,24 +60,12 @@ export const GameOptions = {
     messageDescriptionY: 66 * gameDevicePixelRatio,
     messageButtonY: 110 * gameDevicePixelRatio,
 
-    // @TODO: Clean
-    
-
+    // BigLetterBox
     tileStartAt: 18 * gameDevicePixelRatio,
     tileScale: 3 * gameDevicePixelRatio,
     tileSpacing: 10 * gameDevicePixelRatio,
     tileLetterScale: 2 * gameDevicePixelRatio,
 
-    keyboardScale: 2 * gameDevicePixelRatio,
-    keyboardLetterScale: 1 * gameDevicePixelRatio,
-    keyboardTextDownMovement: 2 * gameDevicePixelRatio,
-    keyboardButtonSpacing: 25 * gameDevicePixelRatio,
-
-    
-
-
-
+    // GameGrid()
     gameGridScale: 3 * gameDevicePixelRatio,
- 
-    rows : 6,
 }
