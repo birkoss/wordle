@@ -73,9 +73,14 @@ export class PlayScene extends Phaser.Scene {
 
         timeline.play();
 
-        this.message = new Message(this, "Partie terminée", "Vous y étiez presque!\nEssayer encore!", function() {
-            this.scene.start('PlayScene');
-        }.bind(this));
+        this.message = new Message(
+            this,
+            "Message",
+            "Content",
+            function() {
+                this.scene.start('PlayScene');
+            }.bind(this)
+        );
         this.message.x = (this.gameWidth - this.message.getBounds().width) / 2;
         this.message.y = this.game.config.height as number;
     }
