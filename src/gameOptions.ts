@@ -1,11 +1,24 @@
 export const GameOptions = {
-    menuBackgroundScale: 10 / window.devicePixelRatio,
-    menuTitleScale: 6 / window.devicePixelRatio,
-    menuButtonTextDownMovement: 8 / window.devicePixelRatio,
+    // CustomButton()
+    customButtonBackgroundScale: 10 / window.devicePixelRatio,
+    customButtonTextScale: 5 / window.devicePixelRatio,
+    customButtonTextX: 290 / window.devicePixelRatio,
+    customButtonTextDownMovement: 8 / window.devicePixelRatio,
 
-    menuButtonBackgroundScale: 10 / window.devicePixelRatio,
-    menuButtonTextScale: 5 / window.devicePixelRatio,
-    menuButtonTextX: 290 / window.devicePixelRatio,
+    // MenuButton()
+    menuButtonTextX: 16 / window.devicePixelRatio,
+    menuButtonTextY: -6 / window.devicePixelRatio,
+    
+    // MenuScene()
+    menuSceneBackgroundScale: 10 / window.devicePixelRatio,
+    menuSceneTitleScale: 6 / window.devicePixelRatio,
+    menuSceneTitleY: -196 / window.devicePixelRatio,
+    menuSceneButtonHelpY: 180 / window.devicePixelRatio,
+
+
+
+
+
 
     tileWidth: 11,
 

@@ -4,6 +4,6 @@ export default class GuiText extends Phaser.GameObjects.BitmapText {
 
         this.setOrigin(0.5);
 
-       scene.add.existing(this);
+        scene.add.existing(this);
     }
 }
