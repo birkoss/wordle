@@ -68,14 +68,13 @@ export class PlayScene extends Phaser.Scene {
             this,
             "Message",
             "Content",
-            function() {
-                this.scene.start('PlayScene');
-            }.bind(this)
+            () => this.animateOut(() => this.scene.start('PlayScene'))
         );
         this.message.x = this.message.getBounds().width / 2;
         this.message.y = this.message.getBounds().height / 2;
+        this.message.setAlpha(0);
 
-        this.animateIn(null);
+        this.animateIn();
     }
 
     onKeyDown(e: KeyboardEvent): void {
@@ -190,26 +189,10 @@ export class PlayScene extends Phaser.Scene {
         this.message.changeBackground(isError ? 1 : 0);
         this.message.textDescription.setText(description);
 
-        let timeline = this.tweens.createTimeline();
-
-        timeline.add({
-            targets: this.keyboard,
-            y: this.game.config.height as number,
-            duration: 250,
-            ease: 'Power1'
-        });
-       
-        timeline.add({
-            targets: this.message,
-            y: this.gameGrid.y + this.gameGrid.getBounds().height + GameOptions.playScenePadding,
-            duration: 250,
-            ease: 'Power1'
-        });
-
-        timeline.play();
+        this.message.animateIn();
     }
 
-    animateIn(callback: Function): void {
+    animateIn(): void {
         let timeline = this.tweens.createTimeline();
 
         this.panel.y = -this.panel.getBounds().height;
