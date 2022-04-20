@@ -45,19 +45,13 @@ export class PlayScene extends Phaser.Scene {
         this.panel = new Panel(
             this,
             () => this.popup.animateIn()
-            /*
-
-            () => this.animateOut(
-                () => this.scene.start('MenuScene')
-            )
-            */
         );
-        this.panel.x = this.gameWidth / 2;
+        this.panel.x = (GameOptions.gameLayout == 'vertical' ? this.gameWidth / 2 : this.panel.getBounds().width / 2);
         this.panel.y = this.panel.getBounds().height / 2;
 
         this.gameGrid = new GameGrid(this, GameOptions.rows);
 
-        this.gameGrid.x = (this.gameWidth - this.gameGrid.getBounds().width) / 2;
+        this.gameGrid.x = (GameOptions.gameLayout == 'vertical' ? (this.gameWidth - this.gameGrid.getBounds().width) / 2 : 0);
         this.gameGrid.y = this.panel.getBounds().height + GameOptions.playScenePadding;
 
         this.keyboard = new Keyboard(this, function() {
@@ -65,8 +59,8 @@ export class PlayScene extends Phaser.Scene {
         }.bind(this), function() {
             this.updateWord('>');
         }.bind(this));
-        this.keyboard.x = (this.gameWidth - this.keyboard.getBounds().width) / 2;
-        this.keyboard.y = this.gameGrid.y + this.gameGrid.getBounds().height + GameOptions.playScenePadding;
+        this.keyboard.x = (GameOptions.gameLayout == 'vertical' ? (this.gameWidth - this.keyboard.getBounds().width) / 2 : GameOptions.playScenePadding + this.gameGrid.x + this.gameGrid.getBounds().width);
+        this.keyboard.y = (GameOptions.gameLayout == 'vertical' ? this.gameGrid.y + this.gameGrid.getBounds().height + GameOptions.playScenePadding : this.gameGrid.y);
 
         this.input.keyboard.on('keydown', this.onKeyDown, this);
 
@@ -90,7 +84,7 @@ export class PlayScene extends Phaser.Scene {
         this.popup.y = this.popup.getBounds().height / 2;
         this.popup.setAlpha(0);
 
-        this.animateIn();
+        //this.animateIn();
     }
 
     onKeyDown(e: KeyboardEvent): void {

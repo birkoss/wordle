@@ -2,8 +2,9 @@ let gameDevicePixelRatio: number = window.devicePixelRatio;
 
 export const GameOptions = {
     gameDevicePixelRatio: gameDevicePixelRatio,
-    tileSize: 11,
-    rows : 6,
+    gameLayout: (window.innerWidth > window.innerHeight ? 'horizontal' : 'vertical'),
+    tileSize: 11,   // 11x11
+    rows : 6,       // 6 tries max @TODO: Rename to tries
 
     // CustomButton()
     customButtonBackgroundScale: 3 * gameDevicePixelRatio,
