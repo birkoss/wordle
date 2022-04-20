@@ -27,9 +27,9 @@ export default class Button extends Phaser.GameObjects.Container {
 
         this.add(this.background);
 
-        this.text = new GuiText(scene, this.background.getBounds().width / 2 - 2, this.background.getBounds().height / 2 - 7, text);
+        this.text = new GuiText(scene, this.background.getBounds().width / 2 - 2, this.background.getBounds().height / 2 - GameOptions.buttonTextScale - 2, text);
         this.text.setOrigin(0.5);
-        this.text.setScale(4);
+        this.text.setScale(GameOptions.buttonTextScale);
         this.add(this.text);
 
         this.textOriginalY = this.text.y;

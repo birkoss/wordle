@@ -10,6 +10,7 @@ export const GameOptions = {
     keyboardLetterScale: 4 / window.devicePixelRatio,
 
     buttonBackgroundScale: 10 / window.devicePixelRatio,
+    buttonTextScale: 4 / window.devicePixelRatio,
 
     gameGridScale: 10 / window.devicePixelRatio,
  
