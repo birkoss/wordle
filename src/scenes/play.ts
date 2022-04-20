@@ -40,13 +40,18 @@ export class PlayScene extends Phaser.Scene {
         this.wordToGuess = this.words[Phaser.Math.Between(0, this.words.length - 1)].toUpperCase();
         console.log(this.wordToGuess);
 
-        this.panel = new Panel(this);
+        this.panel = new Panel(
+            this,
+            () => this.animateOut(
+                () => this.scene.start('MenuScene')
+            )
+        );
         this.panel.x = this.gameWidth / 2;
-        this.panel.y = -this.panel.getBounds().height;
+        this.panel.y = this.panel.getBounds().height / 2;
 
         this.gameGrid = new GameGrid(this, GameOptions.rows);
 
-        this.gameGrid.x = -this.gameWidth;
+        this.gameGrid.x = (this.gameWidth - this.gameGrid.getBounds().width) / 2;
         this.gameGrid.y = this.panel.getBounds().height + GameOptions.playScenePadding;
 
         this.keyboard = new Keyboard(this, function() {
@@ -55,32 +60,9 @@ export class PlayScene extends Phaser.Scene {
             this.updateWord('>');
         }.bind(this));
         this.keyboard.x = (this.gameWidth - this.keyboard.getBounds().width) / 2;
-        this.keyboard.y = this.game.config.height as number;
+        this.keyboard.y = this.gameGrid.y + this.gameGrid.getBounds().height + GameOptions.playScenePadding;
 
         this.input.keyboard.on('keydown', this.onKeyDown, this);
-
-        let timeline = this.tweens.createTimeline();
-
-        timeline.add({
-            targets: this.panel,
-            y: this.panel.getBounds().height / 2,
-            duration: 250,
-            ease: 'Power1'
-        });
-        timeline.add({
-            targets: this.gameGrid,
-            x: (this.gameWidth - this.gameGrid.getBounds().width) / 2,
-            duration: 250,
-            ease: 'Power1'
-        });
-        timeline.add({
-            targets: this.keyboard,
-            y: this.gameGrid.y + this.gameGrid.getBounds().height + GameOptions.playScenePadding,
-            duration: 250,
-            ease: 'Power1'
-        });
-
-        timeline.play();
 
         this.message = new Message(
             this,
@@ -91,7 +73,10 @@ export class PlayScene extends Phaser.Scene {
             }.bind(this)
         );
         this.message.x = (this.gameWidth - this.message.getBounds().width) / 2;
-        this.message.y = this.game.config.height as number;
+        this.message.y = this.keyboard.y;
+        this.message.setAlpha(0);
+
+        this.animateIn(null);
     }
 
     onKeyDown(e: KeyboardEvent): void {
@@ -220,6 +205,65 @@ export class PlayScene extends Phaser.Scene {
             y: this.gameGrid.y + this.gameGrid.getBounds().height + GameOptions.playScenePadding,
             duration: 250,
             ease: 'Power1'
+        });
+
+        timeline.play();
+    }
+
+    animateIn(callback: Function): void {
+        let timeline = this.tweens.createTimeline();
+
+        this.panel.y = -this.panel.getBounds().height;
+        timeline.add({
+            targets: this.panel,
+            y: this.panel.getBounds().height / 2,
+            duration: 250,
+            ease: 'Power1'
+        });
+
+        this.gameGrid.x = -this.gameWidth;
+        timeline.add({
+            targets: this.gameGrid,
+            x: (this.gameWidth - this.gameGrid.getBounds().width) / 2,
+            duration: 250,
+            ease: 'Power1'
+        });
+
+        this.keyboard.y = this.game.config.height as number;
+        timeline.add({
+            targets: this.keyboard,
+            y: this.gameGrid.y + this.gameGrid.getBounds().height + GameOptions.playScenePadding,
+            duration: 250,
+            ease: 'Power1'
+        });
+
+        timeline.play();
+    }
+
+    animateOut(callback: Function): void {
+        let timeline = this.tweens.createTimeline();
+
+        timeline.add({
+            targets: this.panel,
+            y: -this.panel.getBounds().height,
+            duration: 250,
+            ease: 'Power1'
+        });
+        timeline.add({
+            targets: this.gameGrid,
+            x: -this.gameWidth,
+            duration: 250,
+            ease: 'Power1'
+        });
+        timeline.add({
+            targets: this.keyboard,
+            y: this.game.config.height as number,
+            duration: 250,
+            ease: 'Power1'
+        });
+
+        timeline.setCallback('onComplete', function() {
+            callback();
         });
 
         timeline.play();
