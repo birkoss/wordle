@@ -35,7 +35,7 @@ export const GameOptions = {
     // Panel()
     panelBackgroundScale: 3 * gameDevicePixelRatio,
     panelButtonX: 10 * gameDevicePixelRatio,
-    panelButtonY: 16 * gameDevicePixelRatio,
+    panelButtonY: -1 * gameDevicePixelRatio,
 
     // MenuScene()
     menuSceneBackgroundScale: 2.5 * gameDevicePixelRatio,

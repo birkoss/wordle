@@ -36,21 +36,18 @@ export class PlayScene extends Phaser.Scene {
         this.gameWidth = this.game.config.width as number;
 
         this.words = this.cache.json.get('words');
-        
         this.currentWord = '';
-
         this.wordToGuess = this.words[Phaser.Math.Between(0, this.words.length - 1)].toUpperCase();
-
         console.log(this.wordToGuess);
 
         this.panel = new Panel(this);
         this.panel.x = this.gameWidth / 2;
-        //this.panel.y = this.panel.getBounds().height / 2;
+        this.panel.y = -this.panel.getBounds().height;
 
         this.gameGrid = new GameGrid(this, GameOptions.rows);
 
-        this.gameGrid.x = (this.gameWidth - this.gameGrid.getBounds().width) / 2;
-        this.gameGrid.y = -this.gameGrid.getBounds().height;
+        this.gameGrid.x = -this.gameWidth;
+        this.gameGrid.y = this.panel.getBounds().height + GameOptions.playScenePadding;
 
         this.keyboard = new Keyboard(this, function() {
             this.updateWord('<');
@@ -65,14 +62,20 @@ export class PlayScene extends Phaser.Scene {
         let timeline = this.tweens.createTimeline();
 
         timeline.add({
+            targets: this.panel,
+            y: this.panel.getBounds().height / 2,
+            duration: 250,
+            ease: 'Power1'
+        });
+        timeline.add({
             targets: this.gameGrid,
-            y: (this.panel.getBounds().height / 2) + GameOptions.playScenePadding,
+            x: (this.gameWidth - this.gameGrid.getBounds().width) / 2,
             duration: 250,
             ease: 'Power1'
         });
         timeline.add({
             targets: this.keyboard,
-            y: (this.panel.getBounds().height / 2) + (GameOptions.playScenePadding * 2) + this.gameGrid.getBounds().height,
+            y: this.gameGrid.y + this.gameGrid.getBounds().height + GameOptions.playScenePadding,
             duration: 250,
             ease: 'Power1'
         });
@@ -214,7 +217,7 @@ export class PlayScene extends Phaser.Scene {
        
         timeline.add({
             targets: this.message,
-            y: this.gameGrid.y + this.gameGrid.getBounds().height + 50,
+            y: this.gameGrid.y + this.gameGrid.getBounds().height + GameOptions.playScenePadding,
             duration: 250,
             ease: 'Power1'
         });
