@@ -5,6 +5,10 @@ export const GameOptions = {
     customButtonTextX: 290 / window.devicePixelRatio,
     customButtonTextDownMovement: 8 / window.devicePixelRatio,
 
+    // Button()
+    buttonTextY: -6 / window.devicePixelRatio,
+    buttonTextScale: 4 / window.devicePixelRatio,
+
     // MenuButton()
     menuButtonTextX: 16 / window.devicePixelRatio,
     menuButtonTextY: -6 / window.devicePixelRatio,
@@ -15,6 +19,9 @@ export const GameOptions = {
     menuSceneTitleY: -196 / window.devicePixelRatio,
     menuSceneButtonHelpY: 180 / window.devicePixelRatio,
 
+    // Keyboard()
+    keyboardMainButtonY: 400 / window.devicePixelRatio,
+    
 
 
 
@@ -32,10 +39,6 @@ export const GameOptions = {
     keyboardTextDownMovement: 8 / window.devicePixelRatio,
 
     keyboardButtonSpacing: 50 / window.devicePixelRatio,
-
-    buttonBackgroundScale: 10 / window.devicePixelRatio,
-    buttonTextScale: 4 / window.devicePixelRatio,
-    buttonTextDownMovement: 8 / window.devicePixelRatio,
 
     messageBackgroundScale: 10 / window.devicePixelRatio,
     messageTitleScale: 5 / window.devicePixelRatio,
