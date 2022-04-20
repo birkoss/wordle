@@ -67,6 +67,6 @@ export default class Button extends Phaser.GameObjects.Container {
 
         this.isPressed = true;
         this.background.setFrame(this.frameOriginal + 1);
-        this.text.y = this.textOriginalY + 8;
+        this.text.y = this.textOriginalY + GameOptions.buttonTextDownMovement;
     }
 }

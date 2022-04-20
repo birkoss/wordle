@@ -56,9 +56,9 @@ export class Keyboard extends Phaser.GameObjects.Container {
             }.bind(this),
             2
         );
-        this.btnEnter.x = this.getBounds().width - this.btnEnter.getBounds().width - 50;
+        this.btnEnter.x = this.getBounds().width - this.btnEnter.getBounds().width - GameOptions.keyboardButtonSpacing;
         
-        this.btnEnter.y = this.getBounds().height + 50;
+        this.btnEnter.y = this.getBounds().height + GameOptions.keyboardButtonSpacing;
         this.btnEnter.disable();
         this.add(this.btnEnter);
 
@@ -70,7 +70,7 @@ export class Keyboard extends Phaser.GameObjects.Container {
             }.bind(this),
             4
         );
-        this.btnBackspace.x = 50;
+        this.btnBackspace.x = GameOptions.keyboardButtonSpacing;
         this.btnBackspace.y = this.btnEnter.y;
         this.btnBackspace.disable();
         this.add(this.btnBackspace);
