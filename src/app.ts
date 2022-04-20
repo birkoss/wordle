@@ -13,11 +13,11 @@ const scaleObject: Phaser.Types.Core.ScaleConfig = {
     min: {
         width: window.innerWidth,
         height: window.innerHeight
-      },
-      max: {
+    },
+    max: {
         width: window.innerWidth,
         height: window.innerHeight
-      }
+    }
 }
  
 const configObject: Phaser.Types.Core.GameConfig = {
