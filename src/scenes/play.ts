@@ -9,7 +9,7 @@ import { GameObjects } from "phaser";
 export enum letterState {
     WRONG = 2,  
     CORRECT = 4,
-    PERFECT = 8,
+    PERFECT = 6,
 }
  
 export class PlayScene extends Phaser.Scene {
