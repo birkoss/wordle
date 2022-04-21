@@ -4,6 +4,7 @@ import { GameOptions } from "../gameOptions";
 import { Keyboard } from "../keyboard";
 import { Panel } from "../gui/panel";
 import { Popup } from "../gui/popup";
+import { GameObjects } from "phaser";
 
 export enum letterState {
     WRONG = 2,  
@@ -27,6 +28,8 @@ export class PlayScene extends Phaser.Scene {
 
     gameContainer: Phaser.GameObjects.Container;
     keyboardContainer: Phaser.GameObjects.Container;
+
+    animations: Object;
  
     constructor() {
         super({
@@ -35,6 +38,8 @@ export class PlayScene extends Phaser.Scene {
     }
  
     create(): void {
+        this.animations = {};
+
         this.gameWidth = this.game.config.width as number;
 
         // Load WORDS from JSON and pick a new WORD
@@ -68,7 +73,7 @@ export class PlayScene extends Phaser.Scene {
         this.popup.y = this.popup.getBounds().height / 2;
         this.popup.setAlpha(0);
 
-        //this.animateIn();
+        this.animateIn();
     }
 
     createGame(): void {
@@ -238,32 +243,43 @@ export class PlayScene extends Phaser.Scene {
     }
 
     animateIn(): void {
+        this.animations = {};
+
         let timeline = this.tweens.createTimeline();
 
-        this.panel.y = -this.panel.getBounds().height;
+        this.animations['panel_in'] = this.panel.y;
+        this.animations['panel_out'] = -this.panel.getBounds().height / 2;
+
+        this.panel.y = this.animations['panel_out'];
         timeline.add({
             targets: this.panel,
-            y: this.panel.getBounds().height / 2,
+            y: this.animations['panel_in'],
             duration: 250,
             ease: 'Power1'
         });
 
-        this.gameGrid.x = -this.gameWidth;
+        this.animations['gameGrid_in'] = this.gameGrid.x;
+        this.animations['gameGrid_out'] = (GameOptions.gameLayout == 'vertical' ? -(this.gameWidth/2 + this.gameGrid.getBounds().width) : -(this.gameWidth / 2) - this.gameGrid.getBounds().width / 2 + GameOptions.playScenePadding);
+
+        this.gameGrid.x = this.animations['gameGrid_out'];
         timeline.add({
             targets: this.gameGrid,
-            x: (this.gameWidth - this.gameGrid.getBounds().width) / 2,
+            x: this.animations['gameGrid_in'],
             duration: 250,
             ease: 'Power1'
         });
+        
+        
+        this.animations['keyboard_in'] = this.keyboard.y;
+        this.animations['keyboard_out'] = this.game.config.height as number;
 
-        this.keyboard.y = this.game.config.height as number;
+        this.keyboard.y = this.animations['keyboard_out'];
         timeline.add({
             targets: this.keyboard,
-            y: this.gameGrid.y + this.gameGrid.getBounds().height + GameOptions.playScenePadding,
+            y: this.animations['keyboard_in'],
             duration: 250,
             ease: 'Power1'
         });
-
         timeline.play();
     }
 
@@ -272,16 +288,18 @@ export class PlayScene extends Phaser.Scene {
 
         timeline.add({
             targets: this.panel,
-            y: -this.panel.getBounds().height,
+            y: this.animations['panel_out'],
             duration: 250,
             ease: 'Power1'
         });
+
         timeline.add({
             targets: this.gameGrid,
-            x: -this.gameWidth,
+            x: this.animations['gameGrid_out'],
             duration: 250,
             ease: 'Power1'
         });
+
         timeline.add({
             targets: this.keyboard,
             y: this.game.config.height as number,

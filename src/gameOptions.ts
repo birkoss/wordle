@@ -1,9 +1,5 @@
 let gameDevicePixelRatio: number = Math.floor(window.devicePixelRatio) + 1;
 
-if (gameDevicePixelRatio < 2) {
-//    gameDevicePixelRatio = 2;
-}
-
 export const GameOptions = {
     gameDevicePixelRatio: gameDevicePixelRatio,
     gameLayout: (window.innerWidth > window.innerHeight ? 'horizontal' : 'vertical'),
