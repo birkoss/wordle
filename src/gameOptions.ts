@@ -1,4 +1,7 @@
 let gameDevicePixelRatio: number = window.devicePixelRatio;
+if (gameDevicePixelRatio < 2) {
+    gameDevicePixelRatio = 2;
+}
 
 export const GameOptions = {
     gameDevicePixelRatio: gameDevicePixelRatio,

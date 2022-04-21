@@ -15,18 +15,18 @@ export class PlayScene extends Phaser.Scene {
     words: string[];
 
     currentWord: string;
-
     wordToGuess: string;
  
     gameWidth: number;
+
     gameGrid: GameGrid;
-
     keyboard: Keyboard;
-
     message: Message;
     popup: Popup;
-
     panel: Panel;
+
+    gameContainer: Phaser.GameObjects.Container;
+    keyboardContainer: Phaser.GameObjects.Container;
  
     constructor() {
         super({
@@ -37,30 +37,14 @@ export class PlayScene extends Phaser.Scene {
     create(): void {
         this.gameWidth = this.game.config.width as number;
 
+        // Load WORDS from JSON and pick a new WORD
         this.words = this.cache.json.get('words');
         this.currentWord = '';
         this.wordToGuess = this.words[Phaser.Math.Between(0, this.words.length - 1)].toUpperCase();
-        console.log(this.wordToGuess);
 
-        this.panel = new Panel(
-            this,
-            () => this.popup.animateIn()
-        );
-        this.panel.x = (GameOptions.gameLayout == 'vertical' ? this.gameWidth / 2 : this.panel.getBounds().width / 2);
-        this.panel.y = this.panel.getBounds().height / 2;
-
-        this.gameGrid = new GameGrid(this, GameOptions.rows);
-
-        this.gameGrid.x = (GameOptions.gameLayout == 'vertical' ? (this.gameWidth - this.gameGrid.getBounds().width) / 2 : 0);
-        this.gameGrid.y = this.panel.getBounds().height + GameOptions.playScenePadding;
-
-        this.keyboard = new Keyboard(this, function() {
-            this.updateWord('<');
-        }.bind(this), function() {
-            this.updateWord('>');
-        }.bind(this));
-        this.keyboard.x = (GameOptions.gameLayout == 'vertical' ? (this.gameWidth - this.keyboard.getBounds().width) / 2 : GameOptions.playScenePadding + this.gameGrid.x + this.gameGrid.getBounds().width);
-        this.keyboard.y = (GameOptions.gameLayout == 'vertical' ? this.gameGrid.y + this.gameGrid.getBounds().height + GameOptions.playScenePadding : this.gameGrid.y);
+        // Create the Panel, GameGrid and Keyboard
+        this.createGame();
+        this.createKeyboard();
 
         this.input.keyboard.on('keydown', this.onKeyDown, this);
 
@@ -85,6 +69,40 @@ export class PlayScene extends Phaser.Scene {
         this.popup.setAlpha(0);
 
         //this.animateIn();
+    }
+
+    createGame(): void {
+        this.gameContainer = this.add.container();
+
+        this.panel = new Panel(
+            this,
+            () => this.popup.animateIn()
+        );
+        this.panel.y = this.panel.getBounds().height / 2;
+
+        this.gameContainer.add(this.panel);
+
+        this.gameGrid = new GameGrid(this, GameOptions.rows);
+
+        this.gameGrid.x = -this.gameGrid.getBounds().width / 2;
+        this.gameGrid.y = this.panel.getBounds().height + GameOptions.playScenePadding;
+
+        this.gameContainer.add(this.gameGrid);
+        this.gameContainer.x = (GameOptions.gameLayout == 'vertical' ? this.gameWidth / 2 : (this.gameWidth / 2) - (this.gameContainer.getBounds().width / 2) - GameOptions.playScenePadding);
+    }
+
+    createKeyboard(): void {
+        this.keyboardContainer = this.add.container();
+
+        this.keyboard = new Keyboard(this, function() {
+            this.updateWord('<');
+        }.bind(this), function() {
+            this.updateWord('>');
+        }.bind(this));
+
+        this.keyboardContainer.add(this.keyboard);
+        this.keyboardContainer.x = (GameOptions.gameLayout == 'vertical' ? (this.gameWidth - this.keyboard.getBounds().width) / 2 : (this.gameWidth / 2) + GameOptions.playScenePadding);
+        this.keyboardContainer.y = (GameOptions.gameLayout == 'vertical' ? this.gameGrid.y + this.gameGrid.getBounds().height + GameOptions.playScenePadding : ((this.game.config.height as number) - this.keyboardContainer.getBounds().height) / 2);
     }
 
     onKeyDown(e: KeyboardEvent): void {
