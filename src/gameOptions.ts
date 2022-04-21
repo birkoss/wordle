@@ -13,7 +13,7 @@ export const GameOptions = {
     customButtonTextDownMovement: 2 * gameDevicePixelRatio,
 
     // Button()
-    buttonTextY: -6 / gameDevicePixelRatio,
+    buttonTextY: -3 * gameDevicePixelRatio,
     buttonTextScale: 1 * gameDevicePixelRatio,
 
     // MenuButton()
